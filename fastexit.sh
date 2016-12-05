@@ -19,8 +19,8 @@
 # description      :This script will make it super easy to run a Tor Exit Node.
 # author           :TorWorld A Project Under The CryptoWorld Foundation.
 # contributors     :KsaRedFx, SPMedia, Lunar, NurdTurd
-# date             :11-23-2016
-# version          :0.0.6 Alpha
+# date             :12-5-2016
+# version          :0.0.7 Alpha
 # os               :Debian/Ubuntu
 # usage            :bash fastexit.sh
 # notes            :If you have any problems feel free to email us: security[at]torworld.org
@@ -63,11 +63,43 @@ system=`lsb_release -i | grep "Distributor ID:" | sed 's/Distributor ID://g' | s
 # Installing dependencies for Tor
 read -p "Do you want to fetch the core Tor dependencies? (Y/N)" REPLY
 if [ "${REPLY,,}" == "y" ]; then
-   echo deb http://deb.torproject.org/torproject.org $flavor main > /etc/apt/sources.list.d/torproject.list
-   echo deb-src http://deb.torproject.org/torproject.org $flavor main >> /etc/apt/sources.list.d/torproject.list
-   gpg --keyserver keys.gnupg.net --recv 886DDD89
-   gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
-fi
+
+  HEIGHT=20
+  WIDTH=120
+  CHOICE_HEIGHT=2
+  BACKTITLE="TorWorld | FastExit"
+  TITLE="FastExit Tor Build Setup"
+  MENU="Choose one of the following Build options:"
+
+  OPTIONS=(1 "Stable Build"
+           2 "Experimental Build")
+
+  CHOICE=$(dialog --clear \
+                  --backtitle "$BACKTITLE" \
+                  --title "$TITLE" \
+                  --menu "$MENU" \
+                  $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                  "${OPTIONS[@]}" \
+                  2>&1 >/dev/tty)
+
+  clear
+  case $CHOICE in
+          1)
+          echo deb http://deb.torproject.org/torproject.org $flavor main > /etc/apt/sources.list.d/torproject.list
+          echo deb-src http://deb.torproject.org/torproject.org $flavor main >> /etc/apt/sources.list.d/torproject.list
+          gpg --keyserver keys.gnupg.net --recv 886DDD89
+          gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+              ;;
+          2)
+          echo deb http://deb.torproject.org/torproject.org $flavor main > /etc/apt/sources.list.d/torproject.list
+          echo deb-src http://deb.torproject.org/torproject.org $flavor main >> /etc/apt/sources.list.d/torproject.list
+          echo deb http://deb.torproject.org/torproject.org tor-experimental-0.2.9.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
+          echo deb-src http://deb.torproject.org/torproject.org tor-experimental-0.2.9.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
+          gpg --keyserver keys.gnupg.net --recv 886DDD89
+          gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+              ;;
+  esac
+  clear
 
 # Installing dependencies for Nginx
 read -p "Attention! You're about to install Tor, and have it configured for an Exit node.
@@ -109,7 +141,6 @@ if [ "${REPLY,,}" == "y" ]; then
    service tor status
    echo "Stopping Tor service..."
    service tor stop
-fi
 
 # Customizing Tor RC file to suit your Exit
 # Nickname for Exit
@@ -166,18 +197,18 @@ echo "ContactInfo $Info" >> /etc/tor/torrc
 # Restarting Tor service
 echo "Restarting the Tor service..."
 service tor restart
+fi
 
 # Nginx Logging
 read -p "Do you want to disable Nginx from logging HTTP requests?
-Warning! This will overwrite your "nginx.conf" file.(Y/N)" REPLY
+Warning! This will overwrite your "nginx.conf" file. (Y/N)" REPLY
 if [ "${REPLY,,}" == "y" ]; then
     echo "Preventing Nginx from logging..."
     curl -s "https://raw.githubusercontent.com/torworld/fastexit/master/nginx/nginx.conf" > /etc/nginx/nginx.conf
+    # Restarting Nginx service
+    echo "Restarting the Nginx service..."
+    service nginx restart
 fi
-
-# Restarting Nginx service
-echo "Restarting the Nginx service..."
-service nginx restart
 
 # Installing TorARM
 read -p "Would you like to install TorARM to help monitor your Exit? (Y/N)" REPLY
@@ -186,4 +217,5 @@ if [ "${REPLY,,}" == "y" ]; then
    echo "Fixing the Tor RC to allow TorARM"
    echo "DisableDebuggerAttachment 0" >> /etc/tor/torrc
    echo "To start TorARM just type: "arm""
+fi
 fi
