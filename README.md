@@ -7,7 +7,9 @@ Do you want to disable Nginx from logging HTTP requests? (Y/N)
 
 
 ##Usage
-`bash fastexit.sh`
+Log into server and download the raw fastrelay.sh script and then execute it.<br>
+- `wget https://raw.githubusercontent.com/torworld/fastexit/master/fastexit.sh`<br>
+- `bash fastexit.sh`
 
 ##Notes
 If you have any problems feel free to email us: `security[at]torworld.org`
