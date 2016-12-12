@@ -1,4 +1,4 @@
-# fastexit
+# FastExit
 Making it easier to run your own Tor Exit Node.
 
 ##Options
