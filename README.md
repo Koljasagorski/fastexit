@@ -11,6 +11,6 @@ Log into your server via ssh and download the raw fastexit.sh script and then ex
 - `bash fastexit.sh`
 
 ##Notes
-Once you run an exit node long enough, you do run the risk of having your personal hosting account information subpoeaned by procecuters/law enforcement if they dont understand that the IP they are investigating is a Tor exit node. If this happens you will have to retain counsel to file a motion to quash the subpoena. If your hosting company is in the US, be extra cautious. 
+Once you run an exit node long enough, you do run the risk of having your personal hosting account information subpoeaned by procecuters/law enforcement if they dont understand that the IP they are investigating is a Tor exit node. If this happens you will have to retain counsel to file a motion to quash the subpoena. If your hosting company is in the United States; be extra cautious. 
 
 If you have any problems feel free to email us: `security[at]torworld.org`
