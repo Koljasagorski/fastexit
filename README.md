@@ -6,7 +6,7 @@ Do you want to disable Nginx from logging HTTP requests? (Y/N)
 - We highly recommend selecting Y (yes) for this option. This will disable Nginx from logging HTTP requests to the exit node landing page. These logs serve no purpose and could actually harm users who visit the IP via browser if law enforcement decides to seize the server and look through nginx access logs. The goal here is to keep zero logs on the Tor exit server that would be useful in any forensic or legal situation.
 
 ##Usage
-Log into your server via ssh and download the raw fastexit.sh script and then execute it.<br>
+Log into your server as root via ssh and download the raw fastexit.sh script and then execute it.<br>
 - `wget https://raw.githubusercontent.com/torworld/fastexit/master/fastexit.sh`<br>
 - `bash fastexit.sh`
 
