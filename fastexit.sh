@@ -19,8 +19,8 @@
 # description      :This script will make it super easy to run a Tor Exit Node.
 # author           :TorWorld A Project Under The CryptoWorld Foundation.
 # contributors     :KsaRedFx, SPMedia, Lunar, NurdTurd
-# date             :12-5-2016
-# version          :0.0.7 Alpha
+# date             :1-16-2017
+# version          :0.0.8 Alpha
 # os               :Debian/Ubuntu
 # usage            :bash fastexit.sh
 # notes            :If you have any problems feel free to email us: security[at]torworld.org
@@ -93,8 +93,8 @@ if [ "${REPLY,,}" == "y" ]; then
           2)
           echo deb http://deb.torproject.org/torproject.org $flavor main > /etc/apt/sources.list.d/torproject.list
           echo deb-src http://deb.torproject.org/torproject.org $flavor main >> /etc/apt/sources.list.d/torproject.list
-          echo deb http://deb.torproject.org/torproject.org tor-experimental-0.2.9.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
-          echo deb-src http://deb.torproject.org/torproject.org tor-experimental-0.2.9.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
+          echo deb http://deb.torproject.org/torproject.org tor-experimental-0.3.0.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
+          echo deb-src http://deb.torproject.org/torproject.org tor-experimental-0.3.0.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
           gpg --keyserver keys.gnupg.net --recv 886DDD89
           gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
               ;;
