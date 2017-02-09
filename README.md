@@ -15,4 +15,4 @@ Once you run an exit node long enough, you do run the risk of having your person
 
 If you have any problems feel free to email us: `security[at]torworld.org`
 
-Visit us at http://TorWorld.org
+Visit us at https://TorWorld.org
