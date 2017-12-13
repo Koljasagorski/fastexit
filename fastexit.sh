@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #===============================================================================================================================================
-# (C) Copyright 2017 TorWorld (https://torworld.org) a project under the CryptoWorld Foundation (https://cryptoworld.is).
+# (C) Copyright 2016-2017 TorWorld (https://torworld.org) a project under the CryptoWorld Foundation (https://cryptoworld.is).
 #
 # Licensed under the GNU GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@
 # description      :This script will make it super easy to run a Tor Exit Node.
 # author           :TorWorld A Project Under The CryptoWorld Foundation.
 # contributors     :KsaRedFx, SPMedia, Lunar, NurdTurd
-# date             :1-16-2017
-# version          :0.0.8 Alpha
+# date             :11-26-2017
+# version          :0.0.9 Alpha
 # os               :Debian/Ubuntu
 # usage            :bash fastexit.sh
 # notes            :If you have any problems feel free to email us: security[at]torworld.org
@@ -93,8 +93,8 @@ if [ "${REPLY,,}" == "y" ]; then
           2)
           echo deb http://deb.torproject.org/torproject.org $flavor main > /etc/apt/sources.list.d/torproject.list
           echo deb-src http://deb.torproject.org/torproject.org $flavor main >> /etc/apt/sources.list.d/torproject.list
-          echo deb http://deb.torproject.org/torproject.org tor-experimental-0.3.0.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
-          echo deb-src http://deb.torproject.org/torproject.org tor-experimental-0.3.0.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
+          echo deb http://deb.torproject.org/torproject.org tor-experimental-0.3.2.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
+          echo deb-src http://deb.torproject.org/torproject.org tor-experimental-0.3.2.x-$flavor main >> /etc/apt/sources.list.d/torproject.list
           gpg --keyserver keys.gnupg.net --recv 886DDD89
           gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
               ;;
